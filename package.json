@@ -1,0 +1,15 @@
+{
+  "name": "my-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node my_bot.js",
+    "dev": "nodemon my_bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
