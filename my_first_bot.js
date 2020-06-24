@@ -4,9 +4,11 @@ const querystring = require('querystring');
 const ms = require('ms');
 const { Client, MessageEmbed } = require('discord.js');
 const AntiSpam = require('discord-anti-spam');
+let parse_ms = require('parse-ms')
+let db = require('quick.db')
+const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
-const client = new Discord.Client();
-const prefix = '!';
+const prefix = ';';
 
 const trim = (str, max) => (str.length > max ? `${str.slice(0, max - 3)}...` : str);
 
@@ -38,13 +40,111 @@ client.once('ready', () =>
 });
 //console log
 
+//roles command
+
+client.on("messageReactionAdd", async (reaction, user) => {
+  // If a message gains a reaction and it is uncached, fetch and cache the message.
+  // You should account for any errors while fetching, it could return API errors if the resource is missing.
+  if (reaction.message.partial) await reaction.message.fetch(); // Partial messages do not contain any content so skip them.
+  if (reaction.partial) await reaction.fetch();
+
+  if (user.bot) return; // If the user was a bot, return.
+  if (!reaction.message.guild) return; // If the user was reacting something but not in the guild/server, ignore them.
+  if (reaction.message.guild.id !== "723135742859280385") return; // Use this if your bot was only for one server/private server.
+
+  if (reaction.message.channel.id === "723135887906570322") { // This is a #self-roles channel.
+    if (reaction.emoji.name === "🟠")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("723163275600068738") // Minecraft role.
+
+    }
+
+    if (reaction.emoji.name === "🟣")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("723163535588327474"); // Roblox role.
+
+    }
+    if (reaction.emoji.name === "🔵")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("723163550591221831") // Minecraft role.
+
+    }
+    if (reaction.emoji.name === "🟤")
+    {
+        await reaction.message.guild.members.cache.get(user.id).roles.add("723163771169800223") // Minecraft role.
+
+    }
+    if (reaction.emoji.name === "🟡")
+    {
+        await reaction.message.guild.members.cache.get(user.id).roles.add("723163854510620694") // Minecraft role.
+
+    }
+    if (reaction.emoji.name === "🟢")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.add("723164027026669588"); // Roblox role.
+
+    }
+  } else {
+    return; // If the channel was not a #self-roles, ignore them.
+  }
+});
+
+client.on("messageReactionRemove", async (reaction, user) => {
+  // We're gonna make a trigger, if the user remove the reaction, the bot will take the role back.
+  if (reaction.message.partial) await reaction.message.fetch();
+  if (reaction.partial) await reaction.fetch();
+
+  if (user.bot) return;
+  if (!reaction.message.guild) return;
+  if (reaction.message.guild.id !== "723135742859280385") return;
+
+  if (reaction.message.channel.id === "723135887906570322") {
+    if (reaction.emoji.name === "🟠")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("723163275600068738") // Minecraft role.
+
+    }
+
+    if (reaction.emoji.name === "🟣")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("723163535588327474"); // Roblox role.
+
+    }
+    if (reaction.emoji.name === "🔵")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("723163550591221831") // Minecraft role.
+
+    }
+    if (reaction.emoji.name === "🟤")
+    {
+        await reaction.message.guild.members.cache.get(user.id).roles.remove("723163771169800223") // Minecraft role.
+
+    }
+    if (reaction.emoji.name === "🟡")
+    {
+        await reaction.message.guild.members.cache.get(user.id).roles.remove("723163854510620694") // Minecraft role.
+
+    }
+    if (reaction.emoji.name === "🟢")
+    {
+      await reaction.message.guild.members.cache.get(user.id).roles.remove("723164027026669588"); // Roblox role.
+
+    }
+
+  } else {
+    return;
+  }
+});
+
+
 
 client.on('message', (message) => antiSpam.message(message));
 
 client.on('message', async message =>
 {
+
 //kick command
-	if (message.content.startsWith("!kick")) {
+	if (message.content.startsWith(";kick")) {
 		const member = message.mentions.members.first()
 		if (!member) {
 			return message.reply(
@@ -60,7 +160,7 @@ client.on('message', async message =>
 			.catch(error => message.reply(`Sorry, an error occured.`))
 	}
 //ban command
-	else if (message.content.startsWith("!ban")) {
+	else if (message.content.startsWith(";ban")) {
 		const member = message.mentions.members.first()
 		if (!member) {
 			return message.reply(
@@ -386,8 +486,30 @@ client.on('message', async message =>
 
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
+
+
+	if (command === 'roles')
+	{
+		message.delete();
+		let channel = client.channels.cache.get("723135887906570322"); // We want to sent the embed, directly to this channel.
+		const embed = new Discord.MessageEmbed()
+		.setColor(3447003)
+		.setTitle("Pick your roles!")
+		.setDescription(`🟠 APEX player \n\n 🟣 GTA player \n\n 🔵 Minecraft player \n\n 🟤 DOTA player \n\n 🟡CSGO player \n\n 🟢Valorant player`) // We're gonna try an unicode emoji. Let's find it on emojipedia.com !
+		channel.send(embed).then(async msg =>
+			{
+			await msg.react("🟠");
+			await msg.react("🟣");
+			await msg.react("🔵");
+			await msg.react("🟤");
+			await msg.react("🟡");
+			await msg.react("🟢");
+			// We're gonna using an await, to make the react are right in order.
+		});
+	}
+
 // cat command
-	if (command === 'cat')
+	else if (command === 'cat')
 	{
 		const { file } = await fetch('https://aws.random.cat/meow').then(response => response.json());
 
@@ -480,6 +602,7 @@ else if (command === 'server')
 
 		message.channel.send(text);
 	}
+
 // help command
 	else if (command === 'help')
 	{
@@ -488,54 +611,42 @@ else if (command === 'server')
 		message.channel.send(`check your private chat @${message.author.username} i send a manual :)`);
 		const embed = new MessageEmbed()
 		.setTitle('Help manual')
-		.setColor(0xff0000)
+		.setColor(3447003)
 		.setDescription('Here`s the list of command that is available in this server')
 		.addFields
 		(
-		{ name: '``!help``', value: 'to bring the manual' },
-		{ name: '``!meme``', value: 'to send some dank and maybe toxic meme' },
-		{ name: '``!urban [topic u want to search]``', value: 'to search something on urban dictionary' },
-		{ name: '``!cat``', value: 'to get some floofy catto' },
-		{ name: '``!dog``', value: 'to get your daily dose of doggo' },
-		{ name: '``!search [topic u want to search]``', value: 'to search something in bing' },
-		{ name: '``!server``', value: 'so u know how many people is in the server' },
-		{ name: '``!user``', value: 'to see your ID' },
-		{ name: '``!facts``', value: 'to see randomly facts (random langguage facts so its not always english)' },
-		{ name: '``!pat``', value: 'to send patting gif' },
-		{ name: '``!hug``', value: 'to send virtual hug' },
-		{ name: '``!avatar``', value: 'to see others avatar or yours avatar' },
-		{ name: '``!wink``', value: 'to send wink gif' },
-		{ name: '``!kick``', value: 'to kick peasant' },
-		{ name: '``!ban``', value: 'to ban people' },
-		{ name: '``!ask [enter what u want to say]``', value: 'ask something to our bot that currently having a existential crisis' },
-		{ name: '``!synonym [synonym u want to search]``', value: 'search synonym in thesaurus' },
-		{ name: '``!textface``', value: 'textface collection to spice up the chat' },
+		{ name: '``;help``', value: 'to bring the manual' },
+		{ name: '``;meme``', value: 'to send some dank and maybe toxic meme' },
+		{ name: '``;urban [topic u want to search]``', value: 'to search something on urban dictionary' },
+		{ name: '``;cat``', value: 'to get some floofy catto' },
+		{ name: '``;dog``', value: 'to get your daily dose of doggo' },
+		{ name: '``;search [topic u want to search]``', value: 'to search something in bing' },
+		{ name: '``;server``', value: 'so u know how many people is in the server' },
+		{ name: '``;user``', value: 'to see your ID' },
+		{ name: '``;facts``', value: 'to see randomly facts (random langguage facts so its not always english)' },
+		{ name: '``;pat``', value: 'to send patting gif' },
+		{ name: '``;hug``', value: 'to send virtual hug' },
+		{ name: '``;avatar``', value: 'to see others avatar or yours avatar' },
+		{ name: '``;wink``', value: 'to send wink gif' },
+		{ name: '``;kick``', value: 'to kick peasant' },
+		{ name: '``;ban``', value: 'to ban people' },
+		{ name: '``;ask [enter what u want to say]``', value: 'ask something to our bot that currently having a existential crisis' },
+		{ name: '``;textface``', value: 'textface collection to spice up the chat' },
+		{ name: '``;roles``', value: 'to get roles' },
+		{ name: '``;spotify [@ somebody]``', value: 'give info if that certain person is listening to spotify' }
 		)
 	.addField('That`s it', 'Please behave yourself if u want to send nsfw pic ( ͡° ͜ʖ ͡°) or swear words, please go to nsfw channel\nhope u enjoy your stay :)', true);
 message.author.send(embed);
 	}
 
-// synonym command
-	else if (command === 'synonym')
-	{
-		if (!args.length)
-		{
-			return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
-		}
-		else if (args[1] === 'foo')
-		{
-			return message.channel.send('bar');
-		}
-		message.channel.send(`search result for ${args[0]}: https://www.merriam-webster.com/thesaurus/${args[0]}`);
-		}
-
 // textface command
 		else if (command === 'textface')
 		{
+			message.delete();
 			message.channel.send(`check your private chat @${message.author.username} i send the greatest and most useful collection of textfaces ( ͡° ͜ʖ ͡°)`);
 			const embed = new MessageEmbed()
 			.setTitle('TEXTFACE HAVEN')
-			.setColor(0xff0000)
+			.setColor(3447003)
 			.setDescription('Here`s the list of textface that is currently available in this server')
 			.addFields
 			(
@@ -585,8 +696,49 @@ message.author.send(embed);
 
 				message.channel.send(response);
 		}
+		else if (message.content.startsWith("!spotify"))
+	  {
+	    let user;
+	    if (message.mentions.users.first())
+	    {
+	      user = message.mentions.users.first();
+	    } else {
+	      user = message.author;
+	    }
 
+	    let convert = require('parse-ms')
 
+	    let status = user.presence.activities[0];
+
+	    if (user.presence.activities.length === 0 || status.name !== "Spotify" && status.type !== "LISTENING") return message.channel.send("This user isn't listening the Spotify.");
+
+	    if (status !== null && status.type === "LISTENING" && status.name === "Spotify" && status.assets !== null) {
+	      let image = `https://i.scdn.co/image/${status.assets.largeImage.slice(8)}`,
+	          url = `https://open.spotify.com/track/${status.syncID}`,
+	          name = status.details,
+	          artist = status.state,
+	          album = status.assets.largeText,
+	          timeStart = status.timestamps.start,
+	          timeEnd = status.timestamps.end,
+	          timeConvert = convert(timeEnd - timeStart);
+
+	      let minutes = timeConvert.minutes < 10 ? `0${timeConvert.minutes}` : timeConvert.minutes;
+	      let seconds = timeConvert.seconds < 10 ? `0${timeConvert.seconds}` : timeConvert.seconds;
+
+	      let time = `${minutes}:${seconds}`;
+
+	      const embed = new Discord.MessageEmbed()
+	      .setAuthor("Spotify Track Information", "https://image.flaticon.com/icons/svg/2111/2111624.svg")
+	      .setColor(0x1ED768)
+	      .setThumbnail(image)
+	      .addField("Name:", name, true)
+	      .addField("Album:", album, true)
+	      .addField("Artist:", artist, true)
+	      .addField("Duration:", time, false)
+	      .addField("Listen now on Spotify!", `[\`${artist} - ${name}\`](${url})`, false)
+	      message.channel.send(embed)
+	    }
+	  }
 // urban dictionary command
 	else if (command === 'urban')
 	{
@@ -617,12 +769,34 @@ message.author.send(embed);
 		message.channel.send(embed);
 	}
 });
-
-//welcoming message
 client.on("guildMemberAdd", member =>
 {
 	member.send(`Welcome on board! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`)
 	member.send(`use !help in the server so i can send you the manual`)
 })
 
-client.login('bot token');
+
+client.login('your token goes here');
+
+ function parseDur(ms)
+ {
+   let seconds = ms / 1000,
+       days = parseInt(seconds / 86400);
+   seconds = seconds % 86400
+
+   let hours = parseInt(seconds / 3600);
+   seconds = seconds % 3600
+
+   let minutes = parseInt(seconds / 60);
+   seconds = parseInt(seconds % 60)
+   if (days)
+ 	{
+     return `${days} day, ${hours} hours, ${minutes} minutes`
+   } else if (hours) {
+     return `${hours} hours, ${minutes} minutes, ${seconds} seconds`
+   } else if (minutes) {
+     return `${minutes} minutes, ${seconds} seconds`
+   }
+
+  return `${seconds} second(s)`
+}
