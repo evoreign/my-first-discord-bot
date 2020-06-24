@@ -28,3 +28,5 @@ features:
 
 its a bit of spaghetti code but i really appreciate it if someone can clean it up a bit.
 thank you for reading my code :)
+
+the use the assign role feature, u must change the server id, channel id, and the role id. 
