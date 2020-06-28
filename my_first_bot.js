@@ -142,7 +142,6 @@ client.on('message', (message) => antiSpam.message(message));
 
 client.on('message', async message =>
 {
-
 //kick command
 	if (message.content.startsWith(";kick")) {
 		const member = message.mentions.members.first()
@@ -180,302 +179,25 @@ client.on('message', async message =>
 
 
 //swearing filter
-	if(message.content.includes('asshole'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/asshole/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('shit'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/shit/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('Shit'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/Shit/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('fuck'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/fuck/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('Fuck'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/Fuck/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('tolol'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/tolol/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('Tolol'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/Tolol/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('bego'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/bego/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('Bego'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/Bego/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('jancuk'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/jancuk/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('Jancuk'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/Jancuk/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('kontol'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/kontol/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('Kontol'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/Kontol/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('memek'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/memek/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('nyepong'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/nyepong/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('cibay'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/cibay/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('idiot'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/idiot/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('cunt'))
-  {
-    let censor = "[explicit]";
-    let edit = message.content.replace(/cunt/gi, censor);
-    message.delete();
-    message.channel.send(`${message.author.username}: ${edit}`);
-    message.channel.send(`@${message.author.username} don't swear`);
-  }
-	else if(message.content.includes('dick'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/dick/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('Dick'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/Dick/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('fuck you'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/fuck you/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('dick head'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/dick head/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('son of a bitch'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/son of a bitch/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('bitch'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/bitch/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('wanker'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/wanker/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('assbanger'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/assbanger/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('assface'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/assface/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('cocksucker'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/cocksucker/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('shitbag'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/shitbag/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('tits'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/tits/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('jizzcock'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/jizzcock/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('cumdumpster'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/cumdumpster/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('wanki'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/wank/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('wanking'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/wanking/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('wanker'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/wanker/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('bellend'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/bellend/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
-	else if(message.content.includes('ngentot'))
-	{
-		let censor = "[explicit]";
-		let edit = message.content.replace(/ngentot/gi, censor);
-		message.delete();
-		message.channel.send(`${message.author.username}: ${edit}`);
-		message.channel.send(`@${message.author.username} don't swear`);
-	}
+let blacklisted = [`2 girls 1 cup`, `2g1c`, `4r5e`, `5h1t`, `5hit`, `a$$`, `a$$hole`, `a_s_s`, `a2m`, `a54`, `a55`, `a55hole`, `acrotomophilia`, `aeolus`, `ahole`, `alabama hot pocket`, `alaskan pipeline`
+	, `anal`, `anal impaler`, `anal leakage`, `analprobe`, `anilingus`, `anus`, `apeshit`, `ar5e`, `areola`, `areole`, `arian`, `arrse`, `arse`, `arsehole`, `aryan`, `ass`, `ass fuck`, `ass fuck`, `ass hole`, `assbag`
+	, `assbandit`, `assbang`, `assbanged`, `assbanger`, `assbangs`, `assbite`, `assclown`, `asscock`, `asscracker`, `asses`, `assface`, `assfaces`, `assfuck`, `assfucker`, `ass-fucker`, `assfukka`, `assgoblin`, `assh0le`, `asshat`, `ass-hat`, `asshead`, `assho1e`, `asshole`, `assholes`, `asshopper`, `ass-jabber`, `assjacker`, `asslick`, `asslicker`
+	, `assmaster`, `assmonkey`, `assmucus`, `assmucus`, `assmunch`, `assmuncher`, `assnigger`, `asspirate`, `ass-pirate`, `assshit`, `assshole`, `asssucker`, `asswad`, `asswhole`, `asswipe`, `asswipes`, `auto erotic`
+	, `azz`, `b!tch`, `b00bs`, `b17ch`, `b1tch`, `ball gag`, `balls licking`, `ball sack`, `ball sucking`, `ballbag`, `balls`, `ballsack`, `bangbros`, `bareback`, `barenaked`, `barf`, `bastard`, `bastards`, `bastinado`, `batty boy`, `bawdy`, `bbw`, `bdsm`
+	, `beastial`, `beastiality`, `biatch`, `dick`, `dick head`, `dick hole`, `dick hole`, `dumb ass`, `dumbass`, `dumbasses`, `Dumbcunt`, `dumbfuck`, `dumbshit`, `dummy`, `dumshit`, `mothafucks`, `mother fucker`
+	, `mother fucker`, `motherfuck`, `motherfucka`, `motherfucked`, `motherfucker`, `motherfuckers`, `motherfuckin`, `motherfucking`, `motherfuckings`, `motherfuckka`, `motherfucks`, `mutherfucker`
+	, `n1gga`, `n1gger`, `napalm`, `nazi`, `nazism`, `neonazi`, `nigaboo`, `nigg3r`, `nigg4h`, `nigga`, `niggah`, `niggas`, `niggaz`, `nigger`, `niggers`, `orgasm`, `orgasmic`, `orgasms`, `orgies`, `orgy`, `p.u.s.s.y.`, `p0rn`
+	, `paedophile`, `pedophile`, `pedophilia`, `pedophiliac`, `scat`, `wang`, `wank`, `wanker`, `wankjob`, `wanky`, `fuck`, `shit`, `cunts`, `cunt`];
+let foundInText = false;
+for (var i in blacklisted)
+{
+	if (message.content.toLowerCase().includes(blacklisted[i].toLowerCase()))foundInText = true;
+}
+if (foundInText)
+{
+	message.delete();
+	message.channel.send('eyyy no swearing')
+}
 // end of swearing filter
 
 
@@ -776,7 +498,7 @@ client.on("guildMemberAdd", member =>
 })
 
 
-client.login('your token goes here');
+client.login('ur token');
 
  function parseDur(ms)
  {
