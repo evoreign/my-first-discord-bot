@@ -24,6 +24,10 @@ features:
 15. send textface list
 16. assign server roles
 17. spotify info
+18. anti spam and auto kick
+19. revised profanity filter
+20. send server stat
+21. role assignment
 
 
 its a bit of spaghetti code but i really appreciate it if someone can clean it up a bit.
